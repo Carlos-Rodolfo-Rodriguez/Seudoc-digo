@@ -130,9 +130,9 @@ inline int leeTec(bool conEco = true) {
 */
 #define mostrar                 std::cout
 #define mostrarErr              cerr
-#define mostrarConAncho(x)      cout.width(x)
+//#define conAncho(x)             cout.width(x)
+#define conAncho(x)             setw(x)
 #define mostrarConDecim(x)      cout.precision(x)
-#define estableceAncho(x)       setw(x)
 #define leer(x)                 cin >> x
 #define leerM(x,y)              mostrar << y;cin >> x
 #define operador                operator
@@ -425,6 +425,8 @@ regresa(resul);
 #define ATRUNCAR                            ios::trunc
 #define BINARIO                             ios::binary
 
+// Mysql connector
+
 // Gráficos OpenGL
 #define grafico                             glutInit (&argc, argv)
 #define Gr_iniModo(modo)                    glutInitDisplayMode(modo)
@@ -479,6 +481,13 @@ regresa(resul);
 #define MutuamExclusivo                     std::mutex
 #define BloqueaMutEx(x)                     x.lock()
 #define DesbloqueaMutEx(x)                  x.unlock()
+
+// Procesamiento de errores
+#define PRUEBA          try {
+#define FINPRUEBA       }
+#define SIERROR(e)      } catch(e) {
+#define SIALGUNERROR    } catch(...) {
+#define ERROR(e)        throw (e)
 
 // Otras
 #define DEPURACION
