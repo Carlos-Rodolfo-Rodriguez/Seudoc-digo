@@ -1,2 +1,1 @@
-# Seudocodigo
-Con las modificaciones 2020.
+# Seudocódigo 2020.
