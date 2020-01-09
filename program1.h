@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 // Versión 2019
+=======
+// Versión 2018
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 //#define WINDOWS
 #ifndef PROGRAM1_H
 #define PROGRAM1_H
 // Inclusiones (¿todo?)
+<<<<<<< HEAD
 #include <ostream>
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -12,8 +19,12 @@
 #include <chrono>
 #include <ctime>
 #include <cstring>
+<<<<<<< HEAD
 //#include <list>
 #include <string>
+=======
+#include <list>
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #include <vector>
 #include <array>
 #include <queue>
@@ -21,20 +32,26 @@
 #include <assert.h>
 #include <stdio.h>
 #include <thread>
+<<<<<<< HEAD
 #include <pthread.h>
 #include <functional>
 #include <mutex>
 #include <condition_variable>
 #include <future>
 #include <atomic>
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 
 using namespace std;
 
 // Sólo para Linux:
 #ifndef WINDOWS
+<<<<<<< HEAD
 #include <sys/socket.h> 
 #include <netinet/in.h> 
 #include <arpa/inet.h>
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #ifndef TECLAS
 #include <termios.h>
 #include <unistd.h>
@@ -99,7 +116,10 @@ inline int leeTec(bool conEco = true) {
 #define tiempoEnC               time_t
 #define TiempoEnC               tiempoEnC
 #define sinSigno                unsigned
+<<<<<<< HEAD
 #define byte                    sinSigno caracter
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 //#define cadena               char *
 //typedef char cadena[256];
 //typedef char cadena20[20];
@@ -110,7 +130,11 @@ inline int leeTec(bool conEco = true) {
 #define enumerado               enum
 
 // Programación genérica (metaprogramación)
+<<<<<<< HEAD
 #define plantilla2(tipo1,tipo2) template <typename tipo1,typename tipo2>
+=======
+//#define plantilla(tipo)         template <class tipo>
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define plantilla(tipo)         template <typename tipo>
 #define implementa              template
 
@@ -142,10 +166,16 @@ inline int leeTec(bool conEco = true) {
 */
 #define mostrar                 std::cout
 #define mostrarErr              cerr
+<<<<<<< HEAD
 #define fijAncho(x)             std::cout.width(x)
 #define conAncho(x)             std::setw(x)
 #define usaDecim(x)             std::setprecision(x)
 #define mostrarConDecim(x)      usaDecim(x)
+=======
+//#define conAncho(x)             cout.width(x)
+#define conAncho(x)             setw(x)
+#define mostrarConDecim(x)      cout.precision(x)
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define leer(x)                 cin >> x
 #define leerM(x,y)              mostrar << y;cin >> x
 #define operador                operator
@@ -158,7 +188,10 @@ inline int leeTec(bool conEco = true) {
 #define QtPrincipal            int main(int argc, char *argv[]) {QCoreApplication a(argc, argv);
 #define finQtPrincipal         return a.exec(); }
 #define finPrincipal           return EXIT_SUCCESS;}
+<<<<<<< HEAD
 #define terminarPrograma       exit(EXIT_SUCCESS)
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define programa               void main() { /##/                               // Borland
 #define finPrograma            }
 #define procedimiento          Procedimiento
@@ -182,7 +215,11 @@ inline int leeTec(bool conEco = true) {
 #define segun(x)               segunCaso(x)
 #define segunCaso(x)           switch (x) {
 #define finSegun               }
+<<<<<<< HEAD
 #define saleDelBucle           break
+=======
+#define sale                   break
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define caso                   case
 #define otroCaso               break; case
 #define casoAsumido            break; default
@@ -192,12 +229,21 @@ inline int leeTec(bool conEco = true) {
 #define salirSi(x)             if(x) break
 #define finIterar              } while (VERDADERO);
 #define mientras(x)            while (x) {
+<<<<<<< HEAD
 #define finMientras            };
 #define repetir                do {
 #define hasta(x)               } while (NO (x));
 #define variar(vc,vi,vf,inc)   si(1+((vf-vi)/(inc))>0) for(vc=vi;((inc>0)?(vc<=vf):(vc>=vf));vc+=inc) {
 #define variarMas1(vc,vi,vf)   for(vc=vi;vc<=vf;vc++) {
 #define variarMenos1(vc,vi,vf) for(vc=vi;vc>=vf;vc--) {
+=======
+#define finMientras            }
+#define repetir                do {
+#define hasta(x)               } while (NO (x));
+#define variar(vc,vi,vf,inc)   si(1+((vf-vi)/(inc))>0) for(vc=vi;((inc>0)?(vc<=vf):(vc>=vf));vc+=inc) {
+#define variarMas1(vc,vi,vf)   si(1+(vf-vi)>0) for(vc=vi;vc<=vf;vc++) {
+#define variarMenos1(vc,vi,vf) si(1+(vf-vi)>0) for(vc=vi;vc<=vf;vc--) {
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define finVariar              }
 #define paraCada(x,conj)       for(auto & x : conj) {
 #define paraCadaValor(x,conj)  for(auto x : conj) {
@@ -210,24 +256,36 @@ inline int leeTec(bool conEco = true) {
 #define arreglo3D(tipo,tam1,tam2,tam3)      array<array<array<tipo,tam3>,tam2>,tam1>        
 
 // Memoria dinámica
+<<<<<<< HEAD
 #define tamDin2D(tipo,CF,CC)                (CF,vector<tipo>(CC))
 //#define tamDin3D(tipo,CF,CC,CP)             (CF,vector<tipo>(CC,vector<tipo>(CP)))
 #define vectorDin(tipo)                     vector<tipo>
+=======
+#define vectorDin(tipo)                     vector<tipo>
+//#define vectorDin(tipo,tam)                 vector<tipo>(tam)
+//#define vectorDin(tipo,tam,inic)            vector<tipo>(tam,inic)
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define matrizDin2D(tipo)                   vector<vector<tipo>>
 #define matrizDin3D(tipo)                   vector<vector<vector<tipo>>>
 #define insertaEleVDin(vec,valor)           {auto it = vec.begin(); vec.insert(it,(valor));}
 #define intercalaEleVDin(vec,valor,pos)     vec.emplace(vec.begin()+(pos),(valor))
 #define agregaEleVDin(vec,valor)            {auto it = vec.end(); vec.insert(it,(valor));}
 #define borra1EleVDin(vec,pos)              if(tamanio(vec) > pos Y pos >= 0) vec.erase(vec.begin()+(pos));
+<<<<<<< HEAD
 #define limpiaVDin(vec)                     vec.clear()
 #define borraVDin(vec)                      vec.~vector()
 #define tamanio(vec)                        vec.size()
 #define tamanioDe(algo)                     sizeof(algo)
+=======
+#define borraVDin(vec)                      vec.clear()
+#define tamanio(vec)                        vec.size()
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define ajusTamanio(vec,t)                  vec.resize(t)
 #define listaDe(tipo)                       vectorDin<tipo> 
 #define insertaLista(lis,valor)             {auto it = lis.begin(); lis.insert(it,(valor));}
 #define intercalaEnLista(lis,valor,pos)     lis.emplace(lis.begin()+(pos),(valor))
 #define agregaALista(lis,valor)             {auto it = lis.end(); lis.insert(it,(valor));}
+<<<<<<< HEAD
 #define borraEleLista(lista,ind)            borra1EleVDin(lista,ind)
 #define primeroLista(lista)                 lista[0]
 #define ultimo(lista)                       lista[tamanio(lista)-1]
@@ -236,6 +294,11 @@ inline int leeTec(bool conEco = true) {
 
 // Equivalencias
 #define intercambiar(x,y)      swap(x,y)
+=======
+
+
+// Equivalencias
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define salto                  endl
 #define tabulado               (char) 9
 #define ES                     ==
@@ -245,19 +308,27 @@ inline int leeTec(bool conEco = true) {
 #define O                      ||
 #define bitY                   &
 #define Y                      &&
+<<<<<<< HEAD
 #define EQV(a,b)               (((a) Y (b)) O (NO (a) Y NO (b)))
 #define NEQV(a,b)              (NO EQV(a,b))
 #define bitOEX(x,y)            (x ^ y)
 #define porVal
 #define porRefStd(x)           std::ref(x)
+=======
+#define bitOEX(x,y)            (x ^ y)
+#define porVal
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define porRef                 &
 #define deRef                  *
 #define apuntadoPor            *
 #define constante              const
 
 // Pseudo funciones
+<<<<<<< HEAD
 #define redondeo(x)            ((entero)(x+0.5))
 #define esBisiesto(a)          (esMult(a,4) Y NO esMult(100) O esMult(400))
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define equiv(x,y)             (((x) Y (y)) O ((NO (x)) Y (NO (y))))
 #define noEquiv(x,y)           (NO equiv(x,y))
 #define signo(x)               fSi(x>0,1,fSi(x<0,(-1),0))
@@ -276,20 +347,29 @@ inline int leeTec(bool conEco = true) {
 #define esLetra(x)             (strchr("ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyzáéíóúüÁÉÍÓÚÜ",x))
 #define esSigno(x)             NO (esLetra(x) O esDigito(x))
 #define esVocal(x)             (strchr("AEIOUaeiouáéíóúüÁÉÍÓÚÜ",x))
+<<<<<<< HEAD
 #define derecha(cadX,n)        (cadX.substr(cadX.size()-n,n))
 #define izquierda(cadX,n)      (cadX.substr(0,n))
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define sinPrimerCar(cad)      (cad.substr(1))
 #define carEstaEnCad(car,cad)  (posCarEnCad(car,cad) >= 0)
 #define posCarEnCad(car,cad)   (cad.find(car))
 #define sinCarPos(x,cad)       (cad.substr(0,x-1)+cad.substr(x))
+<<<<<<< HEAD
 #define reemplaza(cad,ini,cant,subcad) cad.replace(ini,cant,subcad)
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define esConso(x)             (esLetra(x) Y NO esVocal(x))
 #define plural(x)              fSi(x NOES 1,"s","")
 #define esComPal(x,y)          (esSigno(x) Y NO esSigno(y))
 #define esFinPal(x,y)          (NO esSigno(x) Y esSigno(y))
 #define aCaracter(x)           "0123456789"[x]
+<<<<<<< HEAD
 #define arcoCoseno(x)          acos(x)
 #define arcoSeno(x)            asin(x)
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define arcoTangente(y,x)      atan2(y,x)
 #define senoGrados(x)          sin(radianes(x))
 #define coseno(x)              cos(x)
@@ -305,11 +385,20 @@ inline int leeTec(bool conEco = true) {
 #define angulo(x1,y1,x2,y2)    atan2((y2-y1),(x2-x1))
 #define angEnGr(x1,y1,x2,y2)   grados(arcoTangente((y2-y1),(x2-x1)))
 #define angEnG360(x1,y1,x2,y2) grados360(arcoTangente((y2-y1),(x2-x1)))
+<<<<<<< HEAD
 
 //Fechas y tiempo
 
 #define ahoraC()                    clock()
 //#define ahoraC()                     time(nullptr)
+=======
+#define ahoraC()               clock()
+//#define ahoraC()                     time(nullptr)
+#define ahora()                     chrono::high_resolution_clock::now()
+
+//Fechas y tiempo
+
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 //#define poneCadAhora(c)        {TiempoEnC seg = ahora(); struct tm * infoTiempo = localtime(& seg); c = asctime(infoTiempo);}
 inline funcion struct tm * estrTiempoActual() {
 struct tm * resul;
@@ -319,7 +408,11 @@ regresa(resul);
 }
 inline funcion Cadena cadDiaSem(entero diaSem) {
 assert(0 <= diaSem Y diaSem < 7);
+<<<<<<< HEAD
 cadena resul [] = {"Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"};
+=======
+cadena resul [] = {"Domingo","Lunes","Martes","MiÃ©rcoles","Jueves","Viernes","SÃ¡bado"};
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 regresa(resul[diaSem]);
 }
 inline funcion Cadena cadMes(entero mes) {
@@ -347,6 +440,7 @@ regresa(resul[mes]);
 #define cadLargaTiempoHoy()         (cadDiaSemHoy()+" "+cadHorMinSegHoy())
 #define cadFechaAhora()             (cad3DiaSemHoy()+", "+cadDiaHoy())
 #define cadLargaAhora()             (cadFechaHoy()+" "+cadHorMinSegHoy())
+<<<<<<< HEAD
 #define ahoraCrono(tIni)            tIni = ahora()  
 #define ahora()                     std::chrono::high_resolution_clock::now()
 #define lapsoMicrosegs(ini,fin)     std::chrono::duration_cast<std::chrono::microseconds>(fin-ini).count()
@@ -354,6 +448,9 @@ regresa(resul[mes]);
                    
 // ConversiÃ³n a lógico
 #define aLogico(x)                  fSi((x),"VERDADERO","FALSO")
+=======
+
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 // ConversiÃ³n a cadenas
 inline funcion cadena aCadena(entero nro) {
 cadena resul;
@@ -391,8 +488,13 @@ si( difLongi > 0) entonces
 regresa(resul);
 }
 
+<<<<<<< HEAD
 inline funcion largo largo aEntero(cadena cad) {
 largo largo resul
+=======
+inline funcion entero aEntero(cadena cad) {
+entero resul
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
       ,longi = cad.length();
 si(longi > 0) entonces
     si(cad.substr(0,1) ES "-") entonces
@@ -411,22 +513,33 @@ regresa(resul);
 
 // Posiblemente innecesarias en G++
 #define longitud(x)                 x.length()
+<<<<<<< HEAD
 #define cambiaCad(cad,car1,car2)    {for(auto & car:cad) car=fSi(car ES car1,car2,car);}
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define cadIguales(x,y)             (strcmp(x,y) ES 0)
 #define agregaYaX(x,y)              strcat(x,y)
 #define borraCad(x)                 while(strlen(x)) x[longitud(x)-1]='\0'
 #define asigna(carX,cadY)           borraCad(cadY);cadY[0]=carX
 #define agrega(cadX,carY)           cadX[longitud(cadX)] = carY
+<<<<<<< HEAD
 #define inserta(carX,cadY)          {int largoCadY = longitud(cadY);for(int _p=largoCadY;_p>0;p--)cadY[_p] = cadY[_p-1];cadY[0] = carX;}
 #define rellena(carX,n,cadY)        {cadY="";for(int _p=0;_p<n;_p++)cadY += carX;}
+=======
+#define inserta(carX,cadY)          {int largoCadY = longitud(cadY);for(int p=largoCadY;p>0;p--)cadY[p] = cadY[p-1];cadY[0] = carX;}
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define duplicaCadena(o,d)          strcpy(d,o)
 #define carALargo(c)                strtol(c,NULL,10)
 
 // Al azar
 #define iniciAlAzar                 srand(time(NULL))
 #define alAzar                      rand()
+<<<<<<< HEAD
 #define alAzarHasta(x)              (alAzar % (x+1))
 #define alAzarRealHasta(x)          (alAzarReal*(x))
+=======
+#define alAzarHasta(x)              (alAzarReal*(x))
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define alAzarEntre(x,y)            ((x)+alAzarHasta((y)-(x)))
 #define alAzarReal                  (rand()/(real)RAND_MAX)
 #define alAzarRealEntre(x,y)        (x+(y-x)*alAzarReal)
@@ -444,7 +557,10 @@ regresa(resul);
 #define cerrar(arch)                        arch.close()
 #define estaAbierto(arch)                   arch.is_open()
 #define esFinDarch(arch)                    arch.eof()
+<<<<<<< HEAD
 #define esFinDArch(arch)                    feof(arch)
+=======
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define todoBien(arch)                      arch.good()
 #define errorEn(arch)                       arch.fail()
 #define estaMal(arch)                       arch.bad()
@@ -515,6 +631,7 @@ regresa(resul);
 #define Hilo                                std::thread
 #define MaxHilos                            Hilo::hardware_concurrency
 #define IdHilo                              std::this_thread::get_id
+<<<<<<< HEAD
 #define DuermeEsteHiloMilliS(milis)         std::this_thread::sleep_for(std::chrono::milliseconds(milis))
 #define DuermeEsteHiloMicroS(micrs)         std::this_thread::sleep_for(std::chrono::microseconds(micrs))
 #define esperaHilo(x)                       x.join()
@@ -549,6 +666,14 @@ regresa(resul);
 #define Acepta(sock,dir,tDir)               accept(sock,dir,tDir)
 #define FijaOpcionesSocket(o1,o2,o3,o4,o5)  setsockopt(o1,o2,o3,o4,o5)
 #define IPaBinario(tipoIP,ip,dirServ)       inet_pton(tipoIP,ip,dirServ)
+=======
+#define EsperaHilo(x)                       x.join()
+#define EsEsperableHilo(x)                  x.joinable()
+#define NoEsperaHilo(x)                     x.detach()
+#define MutuamExclusivo                     std::mutex
+#define BloqueaMutEx(x)                     x.lock()
+#define DesbloqueaMutEx(x)                  x.unlock()
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 
 // Procesamiento de errores
 #define PRUEBA          try {
@@ -558,7 +683,11 @@ regresa(resul);
 #define ERROR(e)        throw (e)
 
 // Otras
+<<<<<<< HEAD
 //#define DEPURACION
+=======
+#define DEPURACION
+>>>>>>> fdd8d25866190f03d11cad933d2b1f18c1efdad7
 #define GENERAZAR
 //#define ORDENADO
 #endif
