@@ -1,2 +1,2 @@
 # Seudocodigo
-Con las modificaciones 2018.
+Con las modificaciones 2020.
