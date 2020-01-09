@@ -1,0 +1,499 @@
+<HTML>
+<HEAD><TITLE>Preguntas Varias</TITLE>
+<LINK rel="stylesheet" type="text/css" href="styles.css">	
+<meta content="text/html; charset=iso-8859-15" http-equiv="Content-Type" />
+<BODY>
+
+<A name="indice"/> <H2>Indice</H2>
+
+He aquí un compendio de preguntas y problemas varios que he visto una y otra vez en proyectos finales. Espero que les sirva. Si algo no se entiende o hay algún tópico que agregar/completar, pueden escribir a zaskar_84&lt;arroba&gt;yahoo.com.ar.<BR>
+
+<H3>Preguntas genéricas</H3>
+<UL>
+<LI><A href="#cpp_y_h">¿Tengo que dividir mi código en muchos archivos cpp y h? ¿Puedo escribir todo junto en el mismo archivo?</A></LI>
+<LI><A href="#cpp_y_h_2">¿Qué va en los .h y qué en los .cpp?</A></LI>
+<LI><A href="#archivos">¿Cómo elegir qué tipo de archivos y de qué forma utilizarlos en mi proyecto?</A></LI>
+<LI><A href="#ruta_archivos">¿Dónde tiene que guardar los archivos mi programa?</A></LI>
+<LI><A href="#reusar_clases">¿Cómo utilizo las clases que ya tengo diseñadas en un nuevo proyecto?</A></LI>
+<LI><A href="#bibliotecas">¿Cómo uso una biblioteca externa?</A></LI>
+<LI><A href="#juegos">Quiero hacer un juego ¿Qué puedo usar?</A></LI>
+<LI><A href="#sockets">Quiero hacer una aplicación que utilice la red ¿Qué necesito?</A></LI>
+<LI><A href="#instalador">¿Qué pongo en el instalador?</A></LI>
+<LI><A href="#cadenas_numeros">¿Cómo convierto entre cadenas (char*,string,...) y números (int,float,...)?</A></LI>
+<LI><A href="#ayuda_cpp">¿Dónde encuentro ayuda y referencia sobre el C++ estándar?</A></LI>
+<LI><A href="#segfault">Mi programa explota, ¿Y ahora qué hago?</A></LI>
+<LI><A href="#datetime">¿Cómo obtengo la hora y/o la fecha del reloj del sistema?</A></LI>
+<LI>(to-do) <A href="#portabilidad">¿Qué tengo que tener en cuenta para que mi programa funcione en Windows y GNU/Linux?</A></LI>
+<LI><A href="#manuales">¿Cuál es la diferencia entre el manual de usuario y el manual de referencia?</A></LI>
+<LI><A href="#shellexecute">¿Cómo hago para que mi aplicación abra el manual (u otro documento)?</A></LI>
+<!--<LI>(nuevo) <A href="#printing">¿Cómo puedo imprimir desde mi programa?</A></LI>-->
+</UL>
+
+<!--<H3>Errores de compilación y enlazado comunes (gcc)</H3>
+<UL>
+<LI>(to-do) <A href="#undefined_reference">undefined reference to...</A></LI>
+<LI>(to-do) <A href="#multiple_definition">multiple definition of....</A></LI>
+<LI>(to-do) <A href="#wrong_profile">wrong_profile...</A></LI>
+</UL>-->
+
+<H3>Preguntas/Problemas comunes sobre ZinjaI y wxWidgets</H3>
+<UL>
+<LI><A href="#wx_main">¿Dónde quedó la función main?</A></LI>
+<LI><A href="#wx_no_ventana">Dibuje mi ventana y no aparece</A></LI>
+<LI><A href="#wx_no_evento">Veo mi ventana pero no hace nada cuando hago click en un boton</A></LI>
+<LI><A href="#wx_destroy">¿Dónde pongo los delete para las ventanas y controles?</A></LI>
+<LI><A href="#frame_dialog">¿Que diferencia hay entre un wxDialog y wxFrame?</A></LI>
+<LI><A href="#manifest">¿Por qué mis botones no se ven redondeados como en los demás programas de Windows Vista/7?</A></LI>
+<LI><A href="#icon">¿Cómo le pongo un ícono a mi aplicación?</A></LI>
+<LI>(to-do) <A href="#ansi_unicode">¿ANSI vs UNICODE?</A></LI>
+<LI><A href="#help_wxwidgets">¿Dónde consigo ejemplos y referencias de wxWidgets?</A></LI>
+<LI>(nuevo) <A href="#wx_filedialog">¿Cómo hago para obtener una ventana que muestre los archivos y carpetas del sistema, similar a las que permiten abrir/guardar archivos en otros programas?</A></LI>
+</UL>
+
+<H3>Topicos "avanzados" sobre ZinjaI y wxWidgets</H3>
+<UL>
+<LI>(nuevo) <A href="#wx_validator">¿Cómo hago para que un control de texto (wxTextCtrl) permita ingresar sólo números o sólo letras?</A></LI>
+<LI>(to-do) <A href="#wx_custom_control">¿Cómo crear mis propios controles para reutilizar?</A></LI>
+<LI>(to-do) <A href="#wx_arreglo_de_controles">¿Cómo hacer un arreglo de controles (muchos botones, cuadros de texto, etc iguales) sin tener que escribir uno por uno?</A></LI>
+<LI>(nuevo) <A href="#wx_taskbar">¿Cómo hago para que mi aplicación muestre un icono a la derecha de la barra de tareas, al lado del reloj?</A></LI>
+<LI><A href="#wx_shortcuts">¿Cómo agrego atajos de teclado para mi aplicación?</A></LI>
+<LI><A href="#wx_timers">¿Cómo uso temporizadores (timers)?</A></LI>
+<LI><A href="#wx_build">¿Cómo compilo wxWidgets en GNU/Linux?</A></LI>
+</UL>
+<BR>
+Esto se publica bajo licencia <A target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons (CC BY-SA)</A>. Por Pablo Novara, con colaboraciones de Pablo Abrate. Última actualización: 14/02/2012.<bR>
+<BR>
+<HR><HR>
+
+<A name="cpp_y_h"><H2>¿Tengo que dividir mi código en muchos archivos cpp y h? ¿Puedo escribir todo junto en el mismo archivo?</H2>
+<BR>
+Separar en cpp y h tiene varios motivos:<UL>
+<LI>Prolijidad y ordenamiento: los archivos largos se hacen cada vez mas largos con el mantenimiento y termian siendo engorroso. Es conveniente separarlos por clases y/o por funcionalidad. Cuando se trabaja con orientación a objetos lo más aconsejable es colocar cada clase en un archivo (en realidad dos, cpp y h) diferente. Cuando se trata de funciones, se suelen agrupar por tópicos (por ejemplo, las que se utilizan para manejo de archivos en un archivo, las de tratamiento de cadenas en otro, etc). Si se trabaja mayormente por clases y se tiene una pocas funciones auxiliares se pueden agrupar en un archivo utiles.h/.cpp o similar.</LI><BR>
+<LI>Compilación más rápida: Si esta todo en los hs y se compila un solo cpp hay que compilar toooodo ante cualquier cambio. Si está bien separado, cuando se cambia algo, solo se compila el cpp que cambia, o si cambia un .h los cpps que lo incluyan, pero no todos. Luego se reenlazan los objetos nuevos con los otros objetos que no cambiaron y así es muuuucho mas rapido compilar y probar cambios cuando crece el proyecto</LI><BR>
+<LI>Si dos cpps incluyen un h y este tiene alguna definicion (algo que no sea prototipo, como la implementacion de un metodo/funcion, o una variable global/estatica), entoces dos objetos van a tener lo mismo y el linker del 99% de los compiladores no va a saber que hacer y va a dar error. Solo en el caso de algunos productos de Borland y para variables globales esto enlaza, pero entonces tenemos variables globales que no son realmente globales, sino que cada cpp tiene su copia, y aunque se llama igual y proviene del mismo .h son diferentes, y eso no tiene mucho sentido (para hacerlo esto bien se usa la palabra static fuera de las clases si la ven por ahi, nunca lo usamos en poo). (ver <A href="#multiple_definition">multiple definition of....</A>)</LI><BR>
+<LI>Para vender una biblioteca sin que sea opensource, o evitar que la modifiquen: cuando se entrega a alguien una biblioteca, el .h se tiene que dar sí o sí al cliente, sino no la puede usar, pero el cpp no hace falta, ya que se le da el objeto ya compilado y listo. Si el .h tuviera todo se le está dando el fuente completo, mientras que de la otra forma se le dá una especie de índice de qué puede hacer la biblioteca (.h) pero se oculta el cómo (.cpp).</LI>
+</UL><BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="cpp_y_h_2"><H2>¿Qué va en los .h y qué en los .cpp?</H2>
+<BR>
+La respuesta rápida es que en los .h debería ir todo lo que no ocupa lugar en el ejecutable, sino que solo está para darle indicaciones al compilador sobre cómo son las cosas. Por ejemplo, el prototipo de una función es un aviso al compilador para que no se queje cuando la invoquemos y sepa cómo se usa, pero lo que realmente se compila es su implementación, por esto el prototipo va en el .h y su implementación en el .cpp. De igual forma, la declaración de una clase con sus atributos y prototipos de métodos solo sirve para indicarle al compilador que forma tendrá cuando la necesite, va en el .h; pero declarar un objeto de esa clase o implementar una función sí ocupan lugar, así que van en los cpps. Además, si declaramos algo que realmente se compile en un .h, y después hacemos un #include de ese .h desde dos .cpps diferentes del mismo proyecto tenemos compilado dos veces lo mismo, por ejemplo, la misma función, así que a la hora de enlazar no sabrá cual de las dos elegir y generará un error similar a "multiple definition of 'foo'...".<BR><BR>
+La excepción a esta regla aparece con los templates. No se debe colocar la implementación de los templates en su propio .cpp y querer compilarlo, porque hasta que no se invoque (cosa que se hará desde otro .cpp y en la compilación del primero no interviene) no se sabe qué especializaciones se necesitan. Por esto, al compilar el .cpp del template probablemente no compile en realidad ninguna implementación. Los templates entonces se suelen colocar enteros en el .h para que cada .cpp que lo incluye genere en su compilación la especialización que necesita.</BR>
+</BR>
+El .h suele estar rodeado por directivas de preprocesador como "#ifndef ALGO", "#define ALGO", "#endif". Esto se hace para evitar que el archivo se incluya dos veces. Por ejemplo, si se tiene una clase ListaClientes y otra ListaProductos que manejan los clientes y productos de un software de gestión a través de listas STL, es probable que ambas clases incluyan a la cabecera &lt;list&gt;  para declarar objetos list entre sus atributos y argumentos. Entonces, si un programa cliente usa las dos clases, hace los dos #includes e incluye indirectamente dos veces la cabecera que contiene la declaración de la clase string. Si el compilador la procesara dos veces generaría un error. Si la cabecera tiene la estructura de directivas de preprocesador mencionada, la primera vez el "#ifndef _LIST_H_" resulta verdadero (pregunta si no está definida la constante de preprocesador _LIST_H_), y entonces define la constante y procesa la clase, mientras que la segunda el #ifndef resulta falso porque la constante ya fué definida en la primer pasada, y entonces saltea el contenido del archivo evitando el error. El nombre de la constante se define con las mismas reglas que un nombre de clase o variable, pero se suelen colocar en mayúsculas por convención.<BR>
+<bR>
+En el .cpp suelen estar los #includes necesarios, incluyendo el include del .h homónimo. Siempre es preferible colocar los #include en el .cpp para que la compilación sea más rápida. Por ejemplo, si una clase maneja archivos en sus métodos, pero no tiene ningún atributo ni argumento de tipo fstream, el include de dicha clase puede colocarse en el .cpp. Pero si una clase tiene un atributo de tipo vector, el #include debe colocarse sí o sí en el .h para poder definir el atributo. La excepción ocurre cuando el atributo o argumento es un puntero, en cuyo caso basta con una forward declaration de la clase (ejemplo: "class Persona;") para poder declarar el puntero. Por último, siempre conviene colocar primero los includes de bibliotecas externas al proyecto (entre &lt; y &gt;) y luego los correspondientes a archivos del proyecto (entre comillas).<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="archivos"><H2>¿Cómo elegir qué tipo de archivos y de qué forma utilizarlos en mi proyecto?</H2>
+Depende de los datos que maneje el programa. Hay que considerar dos aspectos: el tipo de archivo, y la forma de lectura y escritura del mismo. <BR><BR>
+Las bases de datos en las que se trabaja frecuentemente usualmente se guardan en archivos binarios, ya que es más rápido y fácil encontrar y modificar registros. Los archivos de texto se usan generalmente para guardar configuraciones o generar informes. Sin embargo, en un binario los campos deben tener longitud fija. Si se requiere longitud variable se debe utilizar archivos de texto, o más de un archivo binario, o una combinación de ambos. Por ejemplo, para guardar una lista de pacientes de una clínica (nombre, dni, telefono, obra social) es conveniente utilizar un binario. Sin embargo, no es conveniente incluir el historial del paciente en el binario. Una solución es guardar cada historial en un archivo de texto separado, y colocar en el struct que se guarda en el binario con los datos del paciente, el nombre de su archivo de historial si es necesario (podría ser por ejemplo, su dni mas la extensión ".txt", en cuyo caso no hace falta guardarlo).<BR><BR>
+Otra aspecto importante a considerar es si la base de datos estará en memoria, o se trabajará directamente desde el archivo. Cuando son bases de tamaños razonables sobre las cuales hay que hacer muchas operaciones frecuentes, conviene tenerlas en memoria (por ejemplo en un vector stl) para que su acceso sea más rápido y más fácil. Entonces, el programa debe leer la base sólo una vez al inicio y luego trabajará con la información del vector. La unica contra es que si la información se actualiza solo en memoria y el archivo se escribe una vez al finalizar el programa, se puede perder información (si se corta la luz, el programa falla, etc) por lo que es conveniente reescribir el archivo volcando el contenido del vector luego de una operación importante. Por otro lado, cuando la base de datos crece indefinidamente (ejemplo, historial de alquileres de un videoclub, registros de venta de un almacen, etc) puede resultar cada vez más costoso este mecanismo (más tiempo de lectura, más uso de memoria), por lo que en esos casos es aconsejable trabajar directamente sobre el archivo.
+Supongamos por ejemplo un videoclub. .. la lista de socios y peliculas se manejaria con un vector, porque es mas rapido trabajar en memoria que en archivos y mas facil para el programador utilizando contenedores stl (agregar, quitar, borrar, ordenar, etc). La cantidad de clientes y películas es más o menos conocida y no crece indiscriminadamente con el tiempo. Ademas, son datos que se requieren a cada rato. Por otro lado, los registros de alquileres no se cargarían en memoria, porque si se guardan todos, ese archivo va a a crecer por siempre, ya que todos los dias agregaria numerosas entradas. En ese caso cargar todo en un vector o en una lista es innecesario (puede haber años de alquileres acumulados), puede ocupar mucha memoria y es lento. Ahi se usaría el archivo directamente cuando se requiera una búsqueda. Opcionalmente, se podría llevar un control paralelo donde solo se cargue en memoria los alquielres pendientes de devolución y las películas reservadas que son los datos que se necesitan con frecuencia. En todos los casos se utilizarían archivos binarios.<BR><BR>
+Un problema importante acerca del uso de archivos binarios aparece cuando se requiere borrar un registro. Si se utiliza un vector u otro tipo de contenedor para trabajar en memoria, el problema no aparece ya que al guardar los datos se reescribe completamente el archivo. Sin embargo, si se trabaja directamente sobre el archivo hay dos problemas: cuando se elimina un item de un vector, se deben desplazar todos los items posteriores una posición hacia arriba, y este trabajo es muy lento en un archivo; el tamaño del archivo no se puede reducir, por lo que siempre queda un registro basura al final. Una solución es agregar en el struct del dato que se guarda una bandera (booleano) que indique si el dato es útil o no. Cuando se solicita borrar un dato, simplemente se le invierte la bandera, lo cual es rápido y simple. No hay necesidad de mover datos ni cambiar el tamaño del archivo. Sin embargo, a la hora de listar resultados o buscar registros, se debe tener en cuenta que los registros que tienen su bandera en falso deben ser ignorados. El único problema de este enfoque es que los registroos borrados siguen ocupando lugar. Se puede incluir en el programa una opción para "compactar" la base de datos eliminando así estos elementos innecesarios. Esta operación es lenta y requiere el uso de archivos auxiliares, pero no es necesario ejecutarla frecuentemente (a veces una vez al mes, o una vez al año, según el nivel de uso del software).<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="ruta_archivos"/><H2>¿Dónde tiene que guardar los archivos mi programa?</H2>
+Los archivos que utiliza o genera un programa nunca deben guardarse en rutas fijas. Ejemplos de rutas completas son: "C:\archivos de programa\mi_super_programa\datos.txt" (¿qué pasa si windows está en inglés y la carpeta es "Program files"?, ¿o si está en otra unidad que no sea C?) ó "D:\documents and settings\Pepe\Escritorio\informe.txt" (Sólo sirve para usuarios de nombre Pepe, y para versiones de Windows que usen "Documents and Settings"). Lo correcto es poner rutas relativas, o pedirle al sistema que nos indique la ruta completa. <UL>
+<LI>Rutas relativas: las rutas relativas son las que no comienzan con "/", "\" o con "X:". Parecen incompletas, y de hecho el sistema completa la parte que falta (el comienzo) con la carpeta de ejecución del programa. Si la ruta es "datos\clientes.txt" y ejecutamos un programa con el explorador que está en d:\programa, la ruta completa para ese caso sería "d:\programa\datos\clientes.txt", pero si ejecutamos el mismo programa desde "c:\program files\Prog", la ruta completa que utilizará será "c:\program files\Prog\datos\clientes.txt". Entonces, utilizando rutas relativas (en la mayoría de los casos ponemos símplemente el nombre del archivo), los datos se leen y se guardan desde la carpeta del programa, o subcarpetas de esta, sin importar donde se encuentra instalado. Hay que aclarar dos cosas: 1) cuando corremos el programa desde un IDE, éste nos puede permitir modificar la "Carpeta de trabajo" y hace que sea una diferente a la que contiene el ejecutable (por ejemplo, en ZinjaI por defecto la carpeta de trabajo es la carpeta del projecto, aunque el ejecutable se encuentre en la subcarpeta Debug), y lo mismo puede suceder cuando se utiliza un ícono de acceso directo; 2) esta puede ser una mala idea ya que el programa podría ser instalado por un administrador en carpetas donde los usuarios comunes no tiene permisos para crear o modificar archivos (ver item siguiente para mejor solución).</LI><BR>
+<LI>Rutas del sistema: Usualmente un sistema operativo prevee una carpeta para cada usuario donde éste debería guardar sus datos, configuraciones, documentos, etc. En GNU/Linux, esta carpeta es /home, mientras que en windows en X:\Users ó X:\Documents and Settings. El programa puede "preguntar" al sistema cual es esta carpeta y colocar sus archivos allí, en una subcarpeta propia. Para hacerlo hay dos formas: leer variables de entorno, ó utilizar una biblioteca. En GNU/Linux, la variable HOME contiene la dirección, mientras que en Windows, lo hacen variables como USERPROFILE, HOMEPATH, APPDATA (según el uso que le demos). Para leer una variable de entorno en C++ se puede utilizar la función <A target="_blank" href="http://www.cplusplus.com/reference/clibrary/cstdlib/getenv/">getenv</A> de la biblioteca csdtlib. Esta función recibe el nombre de la variable en un cstring como argumento y devuelve un puntero a un cstring con el contenido de dicha variable (se debe copiar ese contenido a una variable local, no modificarlo directamente). Otra forma de conocer los directorios especiales del sistema es utilizando una biblioteca. Por ejemplo, en wxWidgets existen la función <A target="_blank" href="http://docs.wxwidgets.org/trunk/group__group__funcmacro__networkuseros.html#ge426408d7b659be4db51cc8296af5e7a">wxGetHomeDir</A> en wx/utils.h, o la clase <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_standard_paths.html">wxStandardPaths</A>. Lo mismo se aplica para obtener un lugar donde guardar archivos temporales.</LI>
+</UL><bR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="ayuda_cpp"><H2>¿Dónde encuentro ayuda y referencia sobre el C++ estándar?</H2>
+Mi pagina de cabecera para cualquier cosa relacionada a las bibliotecas estandar es <A target="_blank" href="http://www.cplusplus.com/reference/">http://www.cplusplus.com/reference/</A>.<BR>
+<BR>En <A target="_blank" href="http://en.cppreference.com/w/cpp">http://en.cppreference.com/w/cpp</A> hay también una referencia bastante completa, que incluye además los elementos del la última versión del lenguaje (marcados con C++11, como expresiones regulares, funciones lambda, manejo de hilos, etc). Lo interesante de esta segunda alternativa es que se puede descargar al disco para explorar más tarde sin conexión a internet desde <A target="_blank" href="http://en.cppreference.com/w/Cppreference:Archives">este link</A><BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+<A name="reusar_clases"><H2>¿Cómo utilizo las clases que ya tengo diseñadas en un nuevo proyecto?</H2>
+Supongamos que tenemos una clase ya desarrollada en los archivos miclase.h y miclase.cpp y queremos utilizarla en un nuevo proyecto. Para utilizar esta clase se requiere:<UL>
+<LI>Realizar el #include correspondiente en el código cliente.</LI>
+<LI>En el IDE: indicar que el archivo .cpp debe ser compilado.</LI>
+</UL>
+Si sólo realizamos el include, al compilar el proyecto se podrá compilar correctamente el objeto del cpp cliente, pero no se podrá enlazar el ejecutable (el error será del tipo <A href="#undefined_reference">undefined reference to...</A> en gcc). En el ejecutable se debe incluir el código objeto de todos los cpps (los de las clases previamente desarrollada y los del programa cliente). Para esto, hay que asociar al proyecto los archivos de las clases. No alcanza con copiar el .cpp y el .h	a la carpeta del proyecto (aunque es conveniente hacerlo de todos modos para que todos los archivos de un proyecto estén en la carpeta del mismo), sino que hay que indicarle al IDE que debe tenerlo en cuenta.<BR>
+<BR>
+Por ejemplo, si se utiliza un proyecto en ZinjaI, hay que abrir los archivos .cpp .h (tenien abierto en ZinjaI el proyecto). Al realizar esta acción (menu Archivo->Abrir... y seleccionar los archivos) ZinjaI preguntará si se desea agregar estos archivos al proyecto. Para ver que un archivo está efectivamente en el proyecto podemos observar el árbol de proyecto (ubicado en un panel contra el margen izquierdo). Notar que si estamos utilizando ZinjaI pero no creamos un proyecto no podremos hacerlo; para crear un proyecto hay que ir al menú Archivo y seleccionar Nuevo Proyecto. Si se utiliza por ejemplo Borland Builder 6, hay que ir al Project Manager (desde el menú View), hacer click con el botón derecho sobre el ejecutable (por ejemplo Project1.exe) y seleccionar el comando Add del menú contextual.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="bibliotecas"><H2>¿Cómo uso una biblioteca externa?</H2>
+Para usar una biblioteca externa en un programa C/C++ se necesitan generalmente dos elementos: las cabeceras y los objetos. Las cabeceras son los archivos .h, los que vamos a invocar desde nuestro código con #include, que contienen un índice de lo que puede hacer una biblioteca (interfase). Los objetos son los binarios que contienen el código de máquina de cada función o método de la biblioteca. Estos se generan a partir de los fuentes completos, así que alternativamente una biblioteca puede proporcionarnos los fuentes en lugar de los objetos y será nuestra tarea compilarlos. Como excepción, algunas bibliotecas sólo constan de archivos cabecera y contienen todas las implementaciones en estos archivos (bibliotecas muy simples, o basadas puramente en templates. En el caso general, debemos obtener cabeceras y objetos.<BR>
+<BR>
+Para utilizarla debemos indicarle al compilador que utilice ambas partes. Al compilar los objetos de nuestro programa cliente que hacen uso de la biblioteca el compilador necesitará encontrar las cabeceras para responder a los #include que coloquemos, por lo que debemos indicarle donde buscar estas cabeceras. Al enlazar el ejecutable el compilador necesitará los binarios de las bibliotecas para completar el proceso, por lo que debemos indicarle donde se encuentran y cuales son. Eventualmente, algunas bibliotecas requieren otros parámetros adicionales en la compilación (frecuentemente definición de constantes de preprocesador). Todo esto debe indicarse en el IDE que utilicemos al configurar el proyecto para que pueda generar el ejecutable con éxito. Por ejemplo, en ZinjaI, si vamos al cuadro de configuración de proyecto (menú Ejecutar->Opciones), encontramos en la pestaña Compilación campos para colocar la carpeta donde debe buscar las cabeceras y la lista de constantes a definir, y en la pestaña Enlazado campos para colocar la carpeta donde buscar los objetos y la lista de bibliotecas a utilizar (cuales de todos los objetos disponibles). Si no completamos bien la parte de compilación el compilador dirá que no encuentra los archivos de cabecera y que las clases o funciones de la biblioteca no están declaradas; mientras que si no completamos bien la parte de enlazado tendremos errores del tipo <A href="#undefined_reference">undefined reference to...</A>.<BR>
+<BR>
+Para saber cuales son los argumentos adicionales para cada compilador (por ejemplo, macros a definir) hay que leer la documentación de cada biblioteca, o buscar una plantilla de proyecto para nuestro IDE. Sin embargo, en los sistemas GNU/Linux la mayoría de las bibliotecas utilizan un sistema común que nos permite obtener los parametros para la versión que hemos instalado en nuestro sistema. Para ello utilizamos el comando pkg-config y como argumento el nombre de la biblioteca (en algunas bibliotecas se reemplaza por un comando propio como wx-config para wxWidgets). El otro argumento necesario es el tipo de parametros que necesitamos: --cflags y/o --cppflags muestran los parámetros necesarios para compilar un objeto que utiliza la biblioteca; --libs muestra los parámetros necesarios para enlazar un programa que utiliza la biblioteca. Por ejemplo, para utilizar la biblioteca GTK+ 2.0 en GNU/Linux, los comandos "pkg-config gtk+-2.0 --cflags" y "pkg-config gtk+-2.0 --libs" muestran la lista de argumentos para compilar y enlazar respectivamente. En ZinjaI, por ejemplo, las plantillas de proyectos wxWidgets utilizan este sistema en las configuraciones para GNU/Linux (en las opciones del proyecto la llamada a wx-config aparece entre acentos, esto significa no debe insertarse el texto literal, sino que debe reemplazarse por la salida de ejecutar dicho comando), mientras que en las configuraciones para Windows estan ingresadas una a una las bibliotecas y las rutas adicionales en forma fija.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="juegos"><H2>Quiero hacer un juego ¿Qué puedo usar?</H2>
+Depende mucho del tipo de juego. Si el juego no requiere animaciones ni respuestas en tiempo real (ajedrez, juegos de cartas, de tablero, ahorcado, etc.) se puede utilizar los mismos toolkits gráficos que utilizamos para otras aplicaciones de escritorio (wxWidgets, QT, GTK+, Borland VCL, etc.). Sin embargo, si el juego requiere un mayor despliegue gráfico (animaciones, sprites, transiciones, etc.) se necesita otro tipo de bibliotecas. Es decir, bibliotecas orientadas al uso de recursos multimedia. Utilizar primeras las primeras es más fácil porque se encargan de gestionar los eventos, y presentan todo tipo de controles y componentes (cuadros de texto, de mensaje, diálogos de selección de archivo, etc). Utilizando una biblioteca del segundo grupo generalmente debemos hacernos cargo del bucle de eventos (un bucle que debe ejecutarse contínuamente preguntando en cada iteración por los posibles eventos para llamar a las funciones o métodos que correspondan), y no disponemos de controles básicos como cuadros de ingreso de texto (hay que programar esto desde un nivel mucho más bajo). Sin embargo, como ventaja resultan mucho más eficientes y permiten el manejo de gráficos de una forma más natural. Dentro de las cientos de posibles candidatas de este segundo grupo, recomiendo empezar por <A target="_blank" href="http://www.sfml-dev.org">Simple Fast Multimedia Library</A>, ya que presenta una interfaz orientada a objetos muy simple y facil de utilizar, que permite gestionar gráficos, sonido y entradas de teclado, mouse y joystick eficientemente.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+<A name="sockets"><H2>Quiero hacer una aplicación que utilice la red ¿Qué necesito?</H2>
+Se necesitan dos cosas:<UL>
+<LI>aprender a manejar sockets</LI>
+<LI>inventar un protocolo</LI>
+</UL>
+Los sockets son digamos que algo asi como el componente de software que representa una conexión por red tcp/ip o udp/ip... Se puede trabajar directamente con la api del sistema operativo (en cuyo caso se tiene que implementar manualmente un bucle de eventos, es decir preguntar a cada rato si llego un mensaje nuevo), o usar una bilbioteca y entonces es mas simple porque recibir datos en un sockets es un evento más (como hacer click en un botón o cerrar una ventana). Para trabajar de la primer forma, como ejemplo se pueden analizar/reutilizar los archivos zockets.h y zokcets.cpp de los fuentes de <A target="_blank" href="http://pseint.sourceforge.net/?page=descargas.php">PSeInt</A>. En ellos hay funciones muy muy simples para inicializar, enviar y recibir datos, que funcionan en windows y en linux sin utilizar ninguna biblioteca externa además de las bibliotecas de sockets del propio sistema operativo. Para ejemplo de lo segundo, depende de la biblioteca que se utiliza (en google se pueden encontrar miles). Para ejemplo de sockets en wxWidgets, por ejemplo, en <A target="_blank" href="http://www.wxwidgets.org/downloads/">los fuentes de la bibliotecas</A> (los que aparecen en la categoría "Source Archives") se encuentra una carpeta samples con ejemplos simples y basicos de todos los controles. Hay uno de sockets utilizando las clase <A herf="http://docs.wxwidgets.org/trunk/classwx_socket_client.html">wxSocketClient</A> (socket del programa que realiza la llamada) y <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_socket_server.html">wxSocketServer</A> (socket del programa que espera y atiende las llamadas).<br>
+<BR>
+El tema del protocolo es un problema de la lógica del programa, es pensar qué mensaje se envía, cómo se reconoce cuando se recibe, qué estructura tiene, qué significa, etc... Como cuando se guardan datos en un archivo, que se decide qué campos van y en qué forma (orden, tamaño, cantidad); solo que en las comunicaciones los mensajes a un socket abierto pueden llegar en cualquier momento, o a veces por partes (en varios enviós si es muy grande), entonces es un poco más complicado.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+
+
+<A name="instalador"/><H2>¿Qué pongo en el instalador?</H2>
+
+Hay que poner todo lo que sea necesario para que el programa funcione:<OL>
+<LI>Ejecutable (fundamental) y dependencias (ver mas abajo)</LI>
+<LI>Imagenes, iconos, textos, archivos de ayuda, lo que sea que tu programa cargue</LI>
+<LI>Bases de dato en blanco o de ejemplo si las necesita</LI>
+</OL>
+
+Respecto al ejecutable:<BR>
+<BR>
+En todos los IDEs se puede elegir entre una configuracion Debug y una Release (en ZinjaI, menu Ejecutar->Opciones, y elegir en el combo de arriba a la izquierda; en Builder, menu Project->Options y en la parte inferior de la pestaña Compiler hay dos botones: Debug y Full Release). El ejecutable que se genera con la configuración Debug no esta optimizado (trucos que usa el compilador para que funcione más rapido) y tiene información de depuracion (que no hace falta si no se va a utilizar un depurarador). Entonces, para el usuario final, hay que compilar con Release, ya que el ejecutable va a ser mas chico y va a andar mas rapido. Los demas temporales que se encuentran dentro de las carpetas release/debug (archivos .o) no van en el instalador, ya que son solo archivos intermedios que luego pasan a formar parte del ejecutable.<BR>
+<BR>
+Otro tema de interés es el uso de bilibotecas externas. Si se usa enalazado dinamico, el programa necesita las bibliotecas (archivos .dll en Windows, .so en GNU/Linux), y entonces el instalador las tiene que copiar (en Windows, en la carpeta del tu programa o en System32). Si se usa por ejemplo alguno de los productos de Borland, por defecto se enlaza dinámicamente asi que hay que copiar dlls (y bpls?) o cambiar las opciones para que compile estáticamente (poner las bibliotecas dentro del todo en el exe). Si se usa ZinjaI y wxWidgets no se necesita nada porque la compilación de wxWidgets que incluye ZinjaI es estática. Si se utiliza Builder, en las opciones de proyecto (menu Project->Options) hay que desactivar la opción "Use dynamic RTL" de la pestaña Linker y la opción "Build with runtime packages" de la pestaña Packages. <BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+
+
+<A name="cadenas_numeros"><H2>¿Cómo convierto entre cadenas (char*,string,...) y números (int,float,...)?</H2>
+Entre las funciones del C++ estándar encontramos atoi y atof (biblioteca cstdlib) para convertir desde cadenas (cstring) a enteros y flotantes respectivamente. Sin embargo, las funciones que hacen lo contrario (itoa, ftoa) no existen en el estándar. Algunos compiladores las implementan igual, pero si queremos escribir un código correcto y portable no debemos fiarnos de ello. Para realizar esta conversión de forma fácil, hay tres maneras:<BR><BR>
+<LI>Utilizar stringstreams: los stringstream son objetos que tienen las características de los flujos, entre ellas la posibilidad de utilizar los operadores &lt;&lt; y &gt;&gt;, pero su contenido no se guarda en un archivo ni se imprime en la consola como los flujos que utilizamos más habitualmente (cin,cout,ifstream,ofstream), sino que se guarda en memoria, y se puede extraer como un objeto de tipo string. Entonces, una forma fácil para colocar un número en un string, es crear un stringstream vacio, concatenarle el int/float/double con &lt;&lt; y luego extraer el string. Ejemplo: int x=5; stringstream ss; string res; ss&lt;&lt;5; res=ss.str(); // res finalmente contiene el entero x convertido a string</LI><BR>
+<LI>Utilizar sprintf: la función <A target="_blank" href="http://www.cplusplus.com/reference/clibrary/cstdio/sprintf/">sprintf</A> escribe en un cstring de la misma forma que lo hace printf en la consola (el cout de C). Los argumentos son, la cadena donde se escribe, el formato de la escritura y luego las variables. Para escribir un entero el formato es "%i", mientras que para escribir un flotante el formato es "%f", o "%.2f". En el segundo caso, el 2 indica que se debe escribir con 2 decimales. La ventaja de este método es que podemos agregar texto constante en el formato (por ejemplo el postfijo "$" para montos de dinero) o escribir más de una variable en la misma llamada. Ejemplo: char c[20]; double x=2.5; sprintf(c,"%.2f $",x); // escribe "2.50 $"</LI><BR>
+<LI>Utilizar una biblioteca: no se justifica utilizar una biblioteca sólo para la conversión, pero si de todas formas estamos utilizando alguna biblioteca (por ejemplo para la interfaz gráfica) y ésta contiene funciones o clases para simplificar esta tares podemos aprovecharlas. <UL>
+<LI>En los productos de Borland, las bibliotecas propias incluyen las funciones StrToInt, IntToStr, StrToFloat y FloatToStr para realizar las conversiones. Si queremos controlar con detalle el formato (por ejemplo, especificar la cantidad de decimales) debemos utilizar FloatToStrF.</LI>
+<LI>Si utilizamos wxWidgets, la clase wxString presenta las propiedades de los flujos de salida, por lo que podemos utlizar &lt;&lt; como si fuera un stream. Por ejemplo, para colocar un entero x en un cuadro de texto: text_ctrl-&gt;SetValue( wxString()&lt;&lt;x ); Si queremos controlar mejor el formato debemos utilizar el método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_string.html#9588b7f2684b9a6a924dc3746a2b2f8d">PrintF</A>, que recibe los el mismo tipo de formato que sprintf. Ejemplo: wxString().PrintF("%.2f",x);. Para el proceso inverso, wxString tiene los método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_string.html#bb54083175bbc1e1164616b4aa64fcd8">ToLong</A> y <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_string.html#fca98ce954f669ec69696372e81d46ac">ToDouble</A> que convierten a entero largo y double respectivamente. Ambas reciben un puntero a la variable donde colocan el valor convertido, y devuelven un booleano indicando si la conversión se realizó con éxito.</LI>
+</LI></UL><BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+
+
+<A name="segfault"><H2>Mi programa explota, ¿Y ahora qué hago?</H2>
+Respuesta corta: apretar F5 (usar el depurador).<BR>
+Si el programa compila correctamente pero en algún momento de la ejecución se detiene de forma anormal (vemos segfault o violación de segmento en Linux, o el clasico cartel de error en Windows donde apretamos No Enviar sin leer, o cualquier mensaje de ese estilo) lo primero que se suele hacer es correr nuevamente el programa pero utilizando un depurador (en ZinjaI, presinando la tecla F5). Luego intentamos que el programa vuelva a detenerse repitiendo la secuencia de pasos que causa el problema. Cuando el programa se interrumpa por el error el depurador debería mostrarnos el trazado inverso (qué funciones estaban en curso cuando ocurrió el error) y habilitarnos la table de inspecciones para ver qué sucedió (si no está familiarizado con los conceptos básicos de depuración puede comenzar con <A target="_blank" href="http://zinjai.sourceforge.net/Anexo2.pdf">esta guia</A> o los tutoriales de su IDE). Lo primero que hay que buscar son índices fuera de rango (por ejemplo un índice de un arreglo de 20 elementos que vale 20 o más, o negativo), punteros con direcciones erróneas (NULL o muy bajas, incluso en el puntero this), divisiones donde el divisor pueda ser cero, etc. Hay que buscar en todos los niveles del trazado inverso que hayamos implementado. Para que esta búsqueda sea más facil siempre conviene inicializar todas las variables que no se usan inmediatamente (por ejemplo, comenzar con todos los punteros en NULL). Otra pista importante puede venir desde los warnings del compilador. Es conveniente intentar que nuestro código no genere warnings de ningún tipo ya que aunque la mayoría son inofensivos, si nos acostumbramos a ver numerosos warnings en cada compilación dejamos de prestar atención a los mismos y pasamos por alto los importantes. Finalmente, si no se encuentra el problema se recurre a la ejecución paso a paso. Se puede colocar un punto de interrupción antes de que surja el problema (por ejemplo, en la primer línea del evento donde se produce) y utilizar la ejecución paso a paso para acotar el momento. Esto también es útil cuando el programa explota de tal forma que el depurador no es capaz de obtener el trazado inverso. La habilidad para depurar es una de las habilidades más importantes y útiles para un programador, y sólo se desarrolla con la práctica. <BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="datetime"><H2>¿Cómo obtengo la hora y/o la fecha del reloj del sistema?</H2>
+Entre las funciones estándar de C++ tenemos <A target="_blank" href="http://www.cplusplus.com/reference/clibrary/ctime/time/">time</A>. Esta función devuelve un valor de tipo time_t, que en la mayoría de los compiladores es un entero con la cantidad de segundos que transcurrieron desde el 1ero de enero de 1970 a las 0:00. En este valor están codificadas fecha y hora. La ventaja de esta codificación radica en que así se pueden sumar o restar (las diferencias dan en segundos). Para extraer dia, mes, horas, minutos de una variable de tipo time_t se utilizan las funciones <A target="_blank" href="http://www.cplusplus.com/reference/clibrary/ctime/gmtime/">gmtime</A> y <A target="_blank" href="http://www.cplusplus.com/reference/clibrary/ctime/localtime/">localtime</A>, que convierten de un tipo time_t a un tipo <A target="_blank" href="http://www.cplusplus.com/reference/clibrary/ctime/tm/">tm</A> (devuelve un puntero a una variable de tipo tm). La diferencia entre una y otra es que una utiliza la hora local mientras que otra la hora UTC. El tipo tm es una estructura que contiene los campos dia del mes, dia de la semana, mes, año, horas, minutos, segundos, etc por separado. Solo hay que tener en cuenta cómo interpretar cada campo. Por ejemplo, el día del mes va de 1 a 31, pero el mes va de 0 a 11 (entonces el 1 es febrero), y el año comienza a contar desde 1900, entonces 111 significa 2011, etc. Ejemplo de uso:<BR>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time_t t1 = time(NULL);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tm *ptm2 = localtime( &amp;t1 );<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; "Fecha actual (local): " &lt;&lt; ptm2-&gt;tm_mday &lt;&lt; "/" &lt;&lt; ptm2-&gt;tm_mon+1 &lt;&lt; "/" &lt;&lt; ptm2-&gt;tm_year+1900 &lt;&lt; endl;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; "Hora actual (local): " &lt;&lt; ptm2-&gt;tm_hour &lt;&lt; ":" &lt;&lt; ptm2-&gt;tm_min &lt;&lt; ":" &lt;&lt; ptm2-&gt;tm_sec &lt;&lt; endl;<BR>
+</code>
+Todas estas funciones y tipos de dato estan definidos en la cabecera ctime.h.<BR>
+<BR>
+En los casos en los que el proyecto utilice alguna biblioteca o toolkit adicional, se pueden utilizar clases más simples para esta tarea que provengan de estas bibliotecas, aunque generalmente solo es recomendable hacerlo dentro de las clases asociadas directamente a la interfaz, dejando el nucleo del programa independiente de la bilbioteca si este es el caso. Un ejemplo de esto sería la clase <A href="http://docs.wxwidgets.org/2.8/wx_wxdatetime.html">wxDateTime</A>, que tiene métodos para asignas fecha y hora actual, y para obtener cada una de las partes por separado y en diferentes formatos o escalas.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="portabilidad"><H2>¿Qué tengo que tener en cuenta para que mi programa funcione en Windows y GNU/Linux?</H2>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+<A name="manuales"/><H2>¿Cuál es la diferencia entre el manual de usuario y el manual de referencia?</H2>
+El manual de usuario de una aplicación es el manual que un usuario nuevo (que nunca utilizó la aplicación) leería para aprender a utilizarla. Usualmente incluye guías paso a paso con capturas de pantalla que explican cómo realizar las operaciones básicas (instalar el software, cargar datos, buscar datos, etc). Es conveniente organizarlo por funciones (qué se quiere hacer) y no por ventanas (ya que a priori un usuario no sabe a través de qué ventana podrá realizar determinada operación.<BR>
+<BR>
+El manual de referencia es el manual que consulta un usuario que ya conoces los principios básicos del programa. Se utiliza para consultar cosas más específicas sin tener que leer toda la guía del manual de usuario. Buscar en él debe ser fácil y rápido, por lo que suele presentarse en forma de glosario ordenado alfabéticamente. Los items que se incluyen en el mismo suelen ser campos o controles (obligadamente los relacionados a entrada de datos, y opcionalmente los demás) y la información que presenta es una breve descripción del campo o control, y si es para entrada de datos qué restricciones presenta (longitud máxima, si acepta solo numeros, valor máximo o mínimo, etc), o cualquier otro detalle que se considere importante.<BR>
+<BR>
+Debe tenerse presente que ambos manuales están destinados al usuario final de la aplicación, que en general no tendrá conocimientos de programación, por lo que las descripciones no deben incluir vocabulario propio del desarrollo (por ejemplo, no refererirse a un dato como float o double, sino como número real).<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+
+
+<A name="shellexecute"/><H2>¿Cómo hago para que mi aplicación abra el manual (u otro documento)?</H2>
+Para abrir documentos o cualquier tipo de archivo no ejecutable (archivos pdf, doc, html, etc), se requiere de un programa. Este programa puede no ser el mismo en distintas computadoras o sistemas operativos, y aún siendo el mismo puede no estar instalado en el mismo lugar. Es por esto que no conviene utilizar código como "system("C:\archivos de programa\acrobat\reader\acroread.exe manual.pdf")" para abrir por ejemplo un manual. Cada sistema operativo tiene sus mecanismos para asociar un tipo de archivo con una aplicación elegida por el usuario para abrirlo. Cuando nuestro programa necesita abrir un documento debe solicitar al sistema operativo que lo haga para que utilice sus mecanismos para lanzar la aplicación adecuada según el tipo de archivo (en caso de no ser posible o conveniente, nuestro programa debería permitir configurar qué aplicación externa utilizar). A continuación se muestra cómo hacerlo en sistemas Windows y GNU/Linux.<BR>
+<UL>
+<LI>Windows: la API de windows incluye una función específica para esta acción que se denomina <A target="_blank" href="http://msdn.microsoft.com/en-us/library/bb762153%28v=vs.85%29.aspx">ShellExecute</A>. Esta función recibe una dirección de un archivo y ejecuta el mismo (si es ejecutable) o lo abre con la aplicación asociada (si es un documento), de la misma forma en que lo haría si le hiciéramos doble click desde el explorador de archivos. Sus parámetros son: el handle de la ventana padre (puede ser NULL), el tipo de acción (usualmente "open"), la dirección del archivo, el comando completo (agregando argumentos si fuera un ejecutable), la carpeta de trabajo (puede ser NULL para heredar la del programa que lo llama), y el modo de visualización de la ventana (usualmente SW_NORMAL). Para usarla se debe incluir la cabecera &lt;windows.h&gt;. Entonces, para abrir por ejemplo el archivo "manual.pdf", el código sería: ShellExecute(NULL,"open","manual.pdf","manual.pdf",NULL,SW_NORMAL);</LI>
+<BR>
+<LI>GNU/Linux: aquí las asociasiones dependen muchas veces del escritorio que se utiliza (kde, gnome, xfce, etc). Sin embargo, en desde hace unos años se comenzó a utilizar una interfaz común para unificar estas tareas, denominada xdg. La mayoría de las distribuciones ya integra en su software de base un conjunto de ejecutables xdg-*. El programa <A target="_blank" href="http://portland.freedesktop.org/xdg-utils-1.0/xdg-open.html">xdg-open</A> se utiliza para abrir un documento con la aplicación asociada a su tipo. Simplemente hay que ejecutar dicho comando agregando como parámetro el nombre del archivo. Si la ejecución desde C++ se realiza con la función system (de cstdlib), puede que nuestra aplicación se "congele" hasta que la apliación que muestra el documento finalize, ya que se ejecuta en primer plano. Para evitar esto, solo hay que agreagar un signo &amp; al final del comando. Por ejemplo, para abrir el archivo manual.pdf el código sería: system("xdg-open manual.pdf &amp;");</LI>
+</UL>
+Es importante notar que en ambos casos el sistema debe tener una aplicación para abrir el tipo de documento en cuestión instalada, de lo contrario estas acciones no tendrán ningún efecto. Es recomendable usar formatos para los cuales existan aplicaciones gratuitas y livianas (utilizar pdf, y nunca doc), o que se encuentren presente por defecto en todos los sistemas operativos (html por ejemplo). Si queremos depender de aplicaciones externas debemos desarrollar en nuestra aplicación un visor de ayuda con nuestro toolkit gráfico. Por ejemplo, en wxWidgets, se incluye un control (<A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_html_window.html">wxHtmlWindow</A>) para visualizar páginas HTML simples (sin uso de javascript, hojas de estilo, etc.), con el cual se puede desarrollar un visor muy básico con mínimo esfuerzo.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+<!--<A name="printing"/><H2>¿Cómo puedo imprimir desde mi programa?</H2>
+Para imprimir necesitaremos generalmente de alguna biblioteca o aplicación externa. En general, no es tarea fácil generar desde el código una planilla o formulario con cierto formato, ya que las apis de impresión suelen presentar funcionalidades muy básicas (escribir texto, dibujar lineas) a partir de las cuales hay que armar el formato deseado (calcular margenes, tamaños, convertir unidades, alinear texto manualmente, etc.). Por esto muchas veces es más rápido delegar la responsabilidad a otra aplicación.<br>
+Un ejemplo de esto es la clase ExcelManipulator, que se puede descargar desde <href="ExcelManipulator-20120210.zip">aquí</A>. La misma permite utilizar excel para imprimir. Tiene métodos para abrir una planilla xls, completar celdas e imprimir, todo sin mostrar en pantalla la ventana de excel, de forma que el usuario de nuestra aplicación no lo notará.
+<A href="#indice">Volver al indice</A><BR><HR>-->
+
+
+
+
+
+<!--<A name="undefined_reference"/><H2>undefined reference to...</H2>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="multiple_definition"/><H2>multiple definition of....</H2>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>-->
+
+<A name="wx_main"/><H2>¿Dónde quedó la función main?</H2>
+Es comun cuando se utilizan bibliotecas de componentes visuales no implementar una función main. Esto se debe a que la función main en realidad la implementa la biblioteca. Este es el caso de wxWidgets. La función main ya está implementada, por lo que al utilizarla wxWidgets no podemos utilizar nuestra propia función main (de hacerlo el compilador mostrará un error del tipo "multiple definitions of..."). Cuando declaramos la Application y utilizamos la macro IMPLEMENT_APP (última linea de Application.h en la plantilla de ZinjaI) estamos diciendo cual es la clase de nuestra applicación. La función main que se encuentra dentro de wxWidgets creará una instancia de esta clase y llamará al método OnInit de la misma. Es por esto que el equivalente a la función main para una aplicación con wxWidgets es el método OnInit de la clase que hereda de wxApp. Allí debemos colocar el código de inicialización de nuestro programa (cargas bases de datos, mostrar la ventana inicial, etc.). Este método debe retornar un valor booleano. Generalmente el valor será true indicando a la función main de wxWidgets que la aplicación se inició correctamente y que debe comenzar a escuchar eventos. Si se retorna false, la aplicación finaliza inmediatamente luego de ejecutar el método OnInit.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="wx_no_ventana"/><H2>Dibuje mi ventana y no aparece</H2>
+Para que al iniciar una aplicación que utiliza wxWidgets el usuario vea una ventana en particular hay que:<UL>
+<LI>Crear una instancia de la clase de dicha ventana. Al diseñar una ventana estamos creando una clase, pero para que se muestre en pantalla debemos crear un objeto (una instancia de dicha clase). Esto usualmente se hace en el método OnInit de la clase que hereda de wxApp (ver <A href="#wx_main">¿Dónde quedó la función main?</A>). Notar que la instancia de la clase debe ser creada dinámicamente (es decir, con el operador new), ya que de lo contrario (si es una variable estática, local en el método) la instancia se destruye al finalizar el método OnInit, lo cual ocurre generalmente de inmediato, de forma que la ventana ni siquiera llega a visualizarse.</LI><BR>
+<LI>Utilizar el método Show de wxFrame o wxDialog: cuando creamos una instancia de una clase que representa una ventana esta se carga en memoria pero no se muestra en pantalla. Para que efectivamente se muestre debemos invocar al método Show de la misma. Esto se puede hacer desde la función que crea la ventana (guardando un puntero a la misma al crearla y utilizandolo después para invocar a Show), o invocando al método Show directamente desde el constructor de la ventana (es conveniente que se la última acción del constructor).</LI>
+</UL><BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="wx_no_evento"/><H2>Veo mi ventana pero no hace nada cuando hago click en un boton</H2>
+Para que la ventana responda a un botón hacen falta dos cosas: El código que relaciona el evento (click en el botón) con un método, y el método en sí.<BR>
+<BR>
+Cuando se utiliza un diseñador visual como wxFormBuilder, el código que asocia eventos y métodos suele generarlo wxFormBuilder, por lo que sólo debemos corroborar que el método esté asignado en el diseñador (seleccionar el control y observar la pestaña Eventos del cuadro de propiedades que se muestra a la derecha de la ventana). Al implementar el método en nuestra clase heredada debemos observar que los prototipos coincidan perfectamente con el método declarado en la clase base generada por el diseñador. Esto generalmente implica que el método reciba por referencia un objeto de tipo wxCommandEvent,wxCloseEvent,wxResizeEvent,etc. según el tipo de evento generado. Otro error común en el uso de diseñadores de este tipo es crear una instancia de la clase diseñada en lugar de la clase heredada. Recordemos que al trabajar con wxFormBuilder, este no genera una clase con métodos virtuales para los eventos, de la cual debemos heredar nuestra propia clase. Es un error frecuente invocar a la clase diseñada en lugar de la clase heradada.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="wx_destroy"/><H2>¿Dónde pongo los delete para las ventanas y controles?</H2>
+Cuando se trabaja con wxWidgets las ventanas y controles usualmente se alocan dinámicamente con el operador new, pero no se desalocan con el operador delete. Las clases de la biblioteca implementan un sistema propio para liberar la memoria que funciona de la siguiente manera: cuando queremos liberar la memoria que utiliza una ventana y destruir dicho objeto, en lugar de utilizar al operador delete se debe utilizar el método Destroy de dicho objeto; al llamar a este método wxWidgets marca el objeto para ser eliminado, pero no lo elimina inmediatamente, sino que espera a que se procesen todos los eventos pendientes y luego lo elimina. Esto tiene dos ventajas: por un lado, se evitan los problemas que podrían surgir si hay pendiente un evento de un objeto y el objeto se elimina antes que el evento se procese; por otro lado, una ventana puede eliminarse a sí misma (se puede llamar a Destroy desde un método/evento de la propia ventana). Además, al destruir un componente que es padre de otros se destruyen todos ellos. Es por esto que si bien al crear una ventana se crean uno por uno los componentes (aunque este código lo suele generar automáticamente el diseñador), para destruirla sólo se invoca al método Destroy de la ventana, pues los mecanismos internos de wxWidgets se encargaran de eliminar los componentes contenidos en dicha ventana.<BR><BR>
+En conclusión, lo que conviene hacer para gestionar correctamente la memoria y evitar que queden cargadas ventanas que ya no se ven ni utilizan es llamar al método Destroy de la ventana. Suele ser conveniente hacerlo en el evento de cierre de la ventana (OnClose), ya que de esta forma se garantiza que siempre que la ventana deja de visualizarse se libera la memoria correspondiente. Al hacer esto, desde los demás eventos que deban eliminar la ventana (por ejemplo los botones Aceptar y Cancelar si es una cuadro de diálogo) basta con llamar el método Close, ya que este generará el evento de cierre y el evento invocará a Destroy.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="frame_dialog"/><H2>¿Que diferencia hay entre un wxDialog y wxFrame?</H2>
+Tanto <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_frame.html">wxFrame</A> como <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_dialog.html">wxDialog</A> heredan de wxTopLevelWindow, por lo que comparten la mayoría de las métodos. Visualmente tienen diferentes estilos por defecto (el diálogo no aparece en la barra de tareas, no tiene botón maximizar, etc), y funcionalmente la ventana es más genérica mientras que el diálogo tiene algunas pocas pero útiles funcionalidades más específicas. Usualmente la ventana principal de una aplicación será de tipo wxFrame, y las ventanas emergentes, de opciones, de mensaje, etc. serán de tipo wxDialog. Un wxDiálog es usualmente una ventana auxiliar que se muestra sobre la ventana principal, en algunos casos funcionando a la par de esta, en otros casos bloqueandola hasta su cierre. Esta es una de las principales ventajas funcionales de wxDialog. Además del método Show, para mostrarse tiene el método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_dialog.html#6e078c3d0653f75ad3c34a37c0b54637">ShowModal</A>. Cuando un evento muestra una ventana con el método Show, el evento continúa ejecutandose hasta finalizar y luego quedan ambas ventanas visibles (la del el evento y el nuevo cuadro de diálogo). Cuando una ventana muestra un wxDialog con ShowModal, el evento que lo hace se interrumpe hasta que el cuadro de diálogo se cierre. Es decir, el código que le sigue a la llamada no se ejecuta hasta que el diálogo no termine. Esto tiene dos ventajas: la ventana principal que deshabilitada hasta que se cierre el diálogo (lo cual a veces es deseable), y el código del evento puede incluir ahí mismo código para reaccionar a los datos que el usuario ingresa en el dialogo.<BR>
+<BR>
+Por ejemplo, si una ventana tiene una lista y al hacer doble click se crea una diálogo para editar un ítem de la lista, utilizando show se tienen los siguientes problemas: el diálogo debe recibir al crearse un puntero a la ventana que contienen la lista (o a la lista) para poder modificarla luego de que el usuario edite los datos y presione Aceptar; y como la ventana de la lista no se deshabilita, el usuario puede abrir varios diálogos de edición que editen el mismo ítem si no se control correctamente, lo cual genera problemas de lógica en el programa. Si se utiliza ShowModal el segundo problema se evita automáticamente ya que mientras un dialogo se muestra el usuario no puede interactuar con la lista. Además, dado que el evento del click en la lista queda a la espera de la finalización del cuadro de diálogo, el código para actualizar la lista puede incluirse en este mismo evento. Adicionalmente, el método ShowModal puede devolver un entero. Para ello el diálogo debe cerrarse mediante el método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_dialog.html#89b6085b05b63e98001311fafcfb21f0">EndModal</A> en lugar de Close, ya que EndModal permite especificar el valor de retorno. Este valor puede utilizarse por ejemplo, para saber si se debe actualizar o no la lista de la ventana principal (si el usuario cerró el cuadro de diálogo con el botón Aceptar o con Cancelar).<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="manifest"/><H2>¿Por qué mis botones no se ven redondeados como en los demás programas de Windows Vista/7?</H2>
+Los programas para Windows pueden incluir un archivo xml (<A target="_blank" href="http://msdn.microsoft.com/en-us/library/aa374191%28v=VS.85%29.aspx">manifest</A>) con cierta información sobre cómo ejecutarse (versiones bibliotecas que utiliza, niveles de seguridad, etc). Si el xml no existe, Windows muestra las ventanas y demás controles de wxWidgets sin aplicarle el "tema". Para que se vean como el resto de las aplicaciones de Windows debemos incluir este archivo e indicar en el que queremos utilizar cierta versión de la bibilioteca de Windows que dibuja estos controles. Hay dos formas de utilizar este archivo: una es colocarlo dentro del ejecutable, la otra es nombrarlo igual que el ejecutable y agrerle ".manifest" al final. Cuando Windows ejecuta el programa, primero busca dentro del ejecutable, si no lo encuentra busca en la carpeta del ejecutable. Por ejemplo, si el ejecutable es zinjai.exe, el archivo manifest sera zinjai.exe.manifest. Si se quiere colocar dentro del ejecutable, en ZinjaI se puede indicar desde la pestaña "Enlazado" del cuadro de Opciones de Ejecucion y Compilación de Proyecto (menu Ejecutar->Opciones).
+El contenido del archivo es el siguiente:<BR>
+<BR><code>
+&nbsp;&nbsp;&nbsp;&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;<BR>
+&nbsp;&nbsp;&nbsp;&lt;assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"&gt;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dependency&gt;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dependentAssembly&gt;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;assemblyIdentity<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type="win32"<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name="Microsoft.Windows.Common-Controls"<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version="6.0.0.0"<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processorArchitecture="*"<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;publicKeyToken="6595b64144ccf1df"<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;language="*"<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/dependentAssembly&gt;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/dependency&gt;<BR>
+&nbsp;&nbsp;&nbsp;&lt;/assembly&gt;<BR>
+</code><BR>
+Las plantillas de proyectos wxWidgets y wxFormBuilder de las versiones de ZinjaI posteriores a 20110610 ya incluyen este archivo en las compilaciones para Windows.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="ansi_unicode"/><H2>¿ANSI vs UNICODE?</H2>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="help_wxwidgets"/><H2>¿Dónde consigo ejemplos y referencias de wxWidgets?</H2>
+La biblioteca incluye una muy completa referencia en formato html. Se puede acceder desde <A target="_blank" href="http://docs.wxwidgets.org/trunk/">este enlace</A>, descargar desde <A target="_blank" href="http://www.wxwidgets.org/downloads/">esta pagina</A> (Current Stable Release -&gt; Documentacion -&gt; HTML Docs), o en ZinjaI acceder rápidamente desde el ítem "Referencia wxWidgets" del submenú "Diseñar Interfases" del menú "Herramientas" (la versión para Windows ya incluye estos documentos, en Linux hay que descargarlos y configurar la dirección en la pestaña de rutas del cuadro de preferencias).<BR>
+<BR>
+Para conseguir ejemplos se puede descargar los <A target="_blank" href="http://www.wxwidgets.org/downloads/">fuentes</A> de la biblioteca (Current Stable Release -&gt; Source Archive -&gt; wxAll). Al descomprimir los fuentes se encuentra una carpeta "samples" que contiene ejemplos completos del uso de la mayoría de los widgets de la biblioteca. Para compilar estos ejemplos con ZinjaI pueden realizar los siguientes pasos: cerrar todos los archivos abiertos y abrir solo el .cpp del ejemplo (cada carpeta tiene un .cpp, si tuviera más de uno abrirlos todos). Crear un nuevo proyecto (Archivo->Nuevo Proyecto) en el directorio del ejemplo (seleccionar "Directorio Actual" en el asistente) con la plantilla de "wxWidgets" (no wxFormBuilder), y con los archivos abiertos (seleccionar "Utilizar los archivos abiertos" debajo de la lista de plantillas).<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+<A name="wx_validator"/><H2>¿Cómo hago para que un control de texto (wxTextCtrl) permita ingresar sólo números o sólo letras?</H2>
+Para restringir el tipo de entrada de un wxTextCtrl puede asociarse a dicho control un objeto de tipo <a href="http://docs.wxwidgets.org/2.8/wx_wxtextvalidator.html#wxtextvalidator">wxTextValidator</A>. Este tipo de objetos se construyen especificando los caracteres permitidos y, una vez asociados al control, descartan las entrada correspondiente a cualquier caracter no permitido.<BR>
+<BR>
+Se puede asociar un wxTextValidator a un wxTextCtrl de dos formas: añadiendo el código necesario en algún punto de nuestro programa entre que se crea el cuadro de texto y se le da la oportunidad al usuario de utilizarlo, por ejemplo en el constructor de la ventana que lo contiene; o definiendolo en las propiedades del cuadro de texto en el diseñador wxFormBuilder.<BR>
+<BR>
+El siguiente código inicializa un validador especificando la constante wxFILTER_NUMERIC, la cual indica que deben permitirse únicamente caracteres numéricos, y la asocia a un control de texto:<br>
+<code>
+&nbsp;&nbsp;&nbsp;wxTextValidator v(wxFILTER_NUMERIC);<BR>
+&nbsp;&nbsp;&nbsp;miControlDeTexto->SetValidator(v); 
+</code><BR>
+A partir de la asociación el control de texto descartará automáticamente toda entrada que no sea numérica.<BR>
+<BR>
+Para hacerlo desde el diseñador wxFormBuilder sin tener que codificar, se debe:<BR>
+&nbsp;&nbsp;&nbsp;1. Seleccionar el control de texto al que se le quiere aplicar la validación.<BR>
+&nbsp;&nbsp;&nbsp;2. Entre las propiedades del objeto, buscar la sección Propiedades y modificar:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* validator_type: cambiar wxDefaultValidator por wxTextValidator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* validator_style: destildar wxFILTER_NONE y seleccionar el tipo de filtro que se quiera utilizar<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* validator_variable: escribir un nuevo identificador para una variable que será atributo de la clase y que utilizará solamente el validator<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* validator_data_type: seleccionar wxString<BR>
+
+Los mismos pasos se pueden aplicar a muchos otros controles de entrada, variando solamente validator_data_type según el tipo de control (la ayuda que muestra el diseñador aclara para qué tipo se debe usar para cada uno).<BR>
+<br>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+
+<A name="wx_filedialog"/><H2>¿Cómo hago para obtener una ventana que muestre los archivos y carpetas del sistema, similar a las que permiten abrir/guardar archivos en otros programas?</H2>
+Para este tipo de dialogos, depende si lo que se desea seleccionar es un archivo o un directorio:<br>
+&nbsp;&nbsp;Para seleccionar un directorio se debe usar un objeto de la clase <a href="http://docs.wxwidgets.org/2.8/wx_wxdirdialog.html">wxDirDialog</A>.<BR>
+&nbsp;&nbsp;Para seleccionar uno o varios archivos, se debe utilizar un objeto de la clase <A href="http://docs.wxwidgets.org/2.8/wx_wxfiledialog.html#wxfiledialog">wxFileDialog</A>.<BR>
+Ambos objetos son muy similares y corresponden a diálogos, por lo cual se debe llamar a la función ShowModal() para que se muestren, y esta llamada bloquea la ventana padre hasta que se haya seleccionado un archivo/directorio. Una vez que la ventana de selección sea cerrada y el flujo del programa retorne a la ventana inicial, existen varias funciones que devuelven información sobre el ítem seleccionado.<br>
+<br>
+El siguiente código, utilizado dentro de un método de alguna ventana, inicializa y muestra un diálogo de selección de archivos:<br>
+<code>
+&nbsp;&nbsp;&nbsp;wxFileDialog fd(this, "Elija un archivo de texto", "C:\\", "", "*.txt");<br>
+&nbsp;&nbsp;&nbsp;// el 3er y cuarto parametro son el directorio inicial y el nombre de archivo inicial respectivamente<br>
+&nbsp;&nbsp;&nbsp;// el 5 parametro indica que se puede seleccionar cualquier archivo (* es como un comodin)<br>
+&nbsp;&nbsp;&nbsp;// siempre y cuando termine en ".txt"<br>
+&nbsp;&nbsp;&nbsp;if (fd.ShowModal()==wxID_OK) { // se compara con wxID_OK para asegurarnos de que el usuario eligió un archivo y no presionó "Cancelar"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wxString archivo = fd.GetPath(); // devuelve el archivo seleccionado con la ruta y todo<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/** hacer algo con el archivo **/<br>
+&nbsp;&nbsp;&nbsp;}<br>
+</code>
+<Br>
+Se puede agregar un argumento más en el constructor que consiste en una o más banderas de las indicadas en la ayuda de la clase (wxFD_* o wxDD_*), para decir si es un cuadro de abrir o guardar, si permite seleccionar más de un archivo, si permite escribir un nombre de archivo que no exista, si debe preguntar al aceptar antes de sobreescribir un archivo existente, etc.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+
+
+<A name="wx_custom_control"/><H2>¿Cómo crear mis propios controles para reutilizar?</H2>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="wx_arreglo_de_controles"/><H2>¿Cómo hacer un arreglo de controles (muchos botones, cuadros de texto, etc iguales) sin tener que escribir uno por uno?</H2>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="icon"><H2>¿Cómo le pongo un ícono a mi aplicación?</H2>
+Primero hay que distinguir que colocarle un ícono al ejecutable (solo Windows), que es el ícono que vemos en el explorador de windows y generalmente en los accesos directos; es diferente de colocarle un ícono a una ventana (aunque podría ser el mismo).<bR>
+<BR>
+Para colocarle un ícono al ejecutable, hay que generar y compilar un archivo de recursos. Si utiliza ZinjaI, esto se hace automáticamente definiendo el archivo de icono (de extensión .ico) en la pestaña General del cuadro de Opciones de Compilación (menu Ejecutar->Opciones).<BR><BR>
+Para colocar un ícono en una ventana se utiliza el método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_top_level_window.html#33dc013a7cb33384f631b2764ca53b06">SetIcon</A>, presente en las clases wxFrame y wxDialog. Este método recibe un objeto de tipo <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_icon.html">wxIcon</A>. Estos objetos se pueden construir a partir de un archivo de ícono simplemente pasando la ruta del archivo en el constructor. Usualmente este código se inserta en el constructor de la ventana (es necesario agregar el include de wx/icon.h). Ejemplo: SetIcon(wxIcon("archivo.ico"));<BR>
+<BR>
+Alternativamente en lugar de utilizar una archivo de ícono se puede generar un archivo xpm. Un archivo xpm es una imágen codificada como código c++ (declaración de una estructura con los datos de la imágen). Podemos hacer un #include del archivo xpm y pasarle el nombre de la estructura al constructor de wxIcon. La ventaja de este método radica en que el ícono se compilará dentro del ejecutable, mientras que con el método anterior siempre tendremos que copiar el archivo de ícono además del archivo ejecutable al copiar el programa. Para generar archivos xpm o convertir de ico/png/etc a xpm podemos usar cualquier editor de imágenes que soporte este formato (por ejemplo, <A target="_blank" href="http://www.gimp.org">GIMP</A>).<BR>
+<BR>
+Advertencia: en muchos sistemas Windows los íconos sólo se muestran correctamente en las ventanas si tienen un tamaño de 32x32. De lo contrario sólo se muestran en la barra de tareas.<BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="wx_taskbar"/><H2>¿Cómo hago para que mi aplicación muestre un icono a la derecha de la barra de tareas, al lado del reloj?</H2>
+Muchas aplicaciones pensadas para permancer abiertas muestran un ícono en la zona de notificaciones (en la barra de tareas, a la derecha, junto al reloj), que usualmente permite mostrar la ventana principal de la aplicación, o presenta un menú contextual con opciones. Para obtener estas funcionalidades con wxWidgets lo que hay que hacer es generar una clase que herede de <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_task_bar_icon.html">wxTaskBarIcon</A>. Esta nueva clase debe utilizar el método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_task_bar_icon.html#a95251b440ebda58172c4398c68e525e7">SetIcon</A> para definir la imágen del icono. Hay dos formas de asociar eventos y métodos en una clase wxWindow: con el método Connect, o con una tabla de eventos generada por macros. En este ejemplo vamos a utilizar la segunda. Para ello, hay que agregar dentro de la clase un linea "DECLARE_EVENT_TABLE();", y luego, en el cpp, armar la tabla con las macros "BEGIN_EVENT_TABLE(nombre_de_la_clase,wxTaskBarIcon) y END_EVENT_TABLE()". Entre medio de estas dos macros, se colocan macros que comienzan con EVT_ y que asocian eventos y métodos. Sin embargo, para el caso en que se quiera desplegar un menú contextual con el click derecho, la clase base incluye un método virtual <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_task_bar_icon.html#a739c81dc5cadf9e550d38001cee419f6">CreatePopupMenu</A> que puede ser reimplementado en la clase heredada y que se llama automáticamente sin necesidad de las macros. Este método debe crear un <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_menu.html">wxMenu</A> dinámicamente y retornarlo, la biblioteca se encargará de liberar la memoria cuando luego de mostrarlo.<BR>
+<bR>
+En el siguiente ejemplo, se crea una clase IconoEnLaBarra que toma la imagen de un icono xpm y que presenta un menu con tres opciones.<BR>
+<br>
+En el archivo IconoEnLaBarra.h:<BR>
+<code>
+&nbsp;&nbsp;&nbsp;#ifndef ICONOENLABARRA_H<BR>
+&nbsp;&nbsp;&nbsp;#define ICONOENLABARRA_H<BR>
+&nbsp;&nbsp;&nbsp;#include &lt;wx/taskbar.h&gt;<BR>
+&nbsp;&nbsp;&nbsp;// es necesario numeros para identificar las opciones del menu, que deben ser mayores a wxID_HIGHEST<BR>
+&nbsp;&nbsp;&nbsp;enum { ID_OPCION_1=wxID_HIGHEST+1, ID_OPCION_2, ID_OPCION_3 };<BR>
+&nbsp;&nbsp;&nbsp;// clase heredada<BR>
+&nbsp;&nbsp;&nbsp;class IconoEnLaBarra : public wxTaskBarIcon {<BR>
+&nbsp;&nbsp;&nbsp;public:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mxTaskBarIcon();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// metodo que construye el menu (click derecho)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wxMenu *CreatePopupMenu();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// metodos para las opciones del menu<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void OnOpcion1(wxCommandEvent &amp;event);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void OnOpcion2(wxCommandEvent &amp;event);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void OnOpcion3(wxCommandEvent &amp;event);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// metodo para el click izquierdo<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void OnClickDerecho(wxTaskBarIconEvent &amp;evt);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// para la tabla de eventos<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DECLARE_EVENT_TABLE();<BR>
+&nbsp;&nbsp;&nbsp;};<BR>
+&nbsp;&nbsp;&nbsp;#endif<BR>
+</code><BR>
+En el archivo IconoEnLaBarra.cpp:<BR>
+<code>
+&nbsp;&nbsp;&nbsp;#include &lt;wx/icon.h&gt;<BR>
+&nbsp;&nbsp;&nbsp;#include &lt;wx/menu.h&gt;<BR>
+&nbsp;&nbsp;&nbsp;#include "IconoEnLaBarra.h"<BR>
+&nbsp;&nbsp;&nbsp;#include "icono.xpm"<BR>
+&nbsp;&nbsp;&nbsp;// tabla de eventos<BR>
+&nbsp;&nbsp;&nbsp;BEGIN_EVENT_TABLE(IconoEnLaBarra,wxTaskBarIcon)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EVT_TASKBAR_LEFT_DOWN(IconoEnLaBarra::OnClick)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EVT_MENU(ID_OPCION_1,IconoEnLaBarra::OnOpcion1)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EVT_MENU(ID_OPCION_2,IconoEnLaBarra::OnOpcion2)<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EVT_MENU(ID_OPCION_3,IconoEnLaBarra::OnOpcion3)<BR>
+&nbsp;&nbsp;&nbsp;END_EVENT_TABLE()<BR>
+&nbsp;&nbsp;&nbsp;// constructor que asigna la imagen<BR>
+&nbsp;&nbsp;&nbsp;mxTaskBarIcon::mxTaskBarIcon() { SetIcon(wxIcon(icono_xpm),"Tooltip del icono"); }<BR>
+&nbsp;&nbsp;&nbsp;// metodo que crea el menu<BR>
+&nbsp;&nbsp;&nbsp;wxMenu * mxTaskBarIcon::CreatePopupMenu ( ) {<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wxMenu *menu = new wxMenu();<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu->Append(ID_OPCION_1,"Texto opcion 1...");<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu->Append(ID_OPCION_2,"Texto opcion 2...");<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu->Append(ID_OPCION_3,"Texto opcion 3...");<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return menu;<BR>
+&nbsp;&nbsp;&nbsp;}<BR>
+&nbsp;&nbsp;&nbsp;// metodos que se ejecutan cuando el usuario elije una opcion del menu<BR>
+&nbsp;&nbsp;&nbsp;void mxTaskBarIcon::OnOpcion1 (wxCommandEvent &amp;event) { ... }<BR>
+&nbsp;&nbsp;&nbsp;void mxTaskBarIcon::OnOpcion2 (wxCommandEvent &amp;event) { ... }<BR>
+&nbsp;&nbsp;&nbsp;void mxTaskBarIcon::OnOpcion3 (wxCommandEvent &amp;event) { ... }<BR>
+&nbsp;&nbsp;&nbsp;// metodo para que tambien muestre el menu con el click izquierdo<BR>
+&nbsp;&nbsp;&nbsp;void mxTaskBarIcon::OnClick(wxTaskBarIconEvent &amp;event) { PopupMenu(CreatePopupMenu()); }<BR>
+</code>
+
+
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+<A name="wx_shortcuts"/><H2>¿Cómo agrego atajos de teclado para mi aplicación?</H2>
+Hay dos formas de asociar una combinación de teclas a un evento:<UL>
+<LI>Utilizando el menu de la ventana: Si la ventana posee una barra de menu (wxMenuBar), cada item del menu (wxMenuItem) puede tener asociado un atajo de teclado. En el diseñador wxFormBuilder, la propiedad "shorcut" del cuadro de propiedades de un wxMenuItem permite definir dicho atajo. Allí se introduce un string con la combinación de teclas del atajo (ej:"F1", "Ctrl+D", "Alt+L", etc...). Cuando se utilice esa combinación de teclas en la ventana se invocará al mismo evente que cuando se hace click sobre el elemento del menu. Si el atajo se ingresa correctamente, al ejecutar la apliación este se muestra a la derecha del elemento del menú. Nota: no todas las combinaciones de tecla son posibles, ya que algunas pueden estar ocupadas por el sistema operativo o depender de la implementación.</LI><BR>
+<LI>Crear una tabla de atajos y asociarla a una ventana: este método es algo más trabajoso pero permite asociar atajos sin necesidad de que las acciones figuren en un menu. Para ello se debe crear una tabla de atajos, asociarla a la ventana, y asociar los eventos de los atajos con métodos de la ventana. Para lo primero se crea un arreglo estático de wxAcceleratorEntry, se lo carga cada item del arreglo con el método Set, se crea un wxAcceleratorTable utilizando pasando el arreglo creado en el constructor, y se asocia a la ventana con el método SetAcceleratorTable. Luego, para conectar los eventos se utiliza el mismo código que para conectar los eventos de menú, pero variando el id. El método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_accelerator_entry.html#baac10bba35d3e3c32f05761e0d19d1a">Set de wxAcceleratorEntry</A> recibe tres argumentos: teclas modificadoras, tecla, y id. Las teclas modificadoras son Control (wxACCEL_CTRL), Shift (wxACCEL_SHIFT), Alterno (wxACCEL_ALT), o ninguna (wxACCEL_NORMAL). La tecla principal del atajo puede es un int que se corresponde con los códigos ascii para los número y letras, y tiene definidas <A target="_blank" href="http://docs.wxwidgets.org/trunk/defs_8h.html#41c4609211685cff198618963ec8f77d">constantes</A> para las demas teclas (WXK_SPACE, WXK_F1, WXK_TAB, ...). Finalmente, el id es un número para identificar ese evento. wxWidgets utilizar internamente ids que van desde 0 hasta la constante wxID_HIGHEST, por lo que podemos utilizar cualquier id superior. A continuación se muestra un ejemplo completo del código que inicializa dos atajos en una ventana y conecta los eventos (este código usualmente va en el constructor de la misma):<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wxAcceleratorEntry entries[2];<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entries[0].Set(wxACCEL_CTRL|wxACCEL_ALT, WXK_SPACE, wxID_HIGHEST+1);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entries[1].Set(0, WXK_F3, wxID_HIGHEST+2);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wxAcceleratorTable accel(2, entries);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetAcceleratorTable(accel);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connect( wxID_HIGHEST+1, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( VentanaPrincipal::OnCtrlAltEspacio) );<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connect( wxID_HIGHEST+2, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( VentanaPrincipal::OnF3) );<BR>
+El código asocia las combinaciones Ctrl+Alt+Espacio y F3 a los métodos OnCtrlAltEspacio y OnF3 de VentanaPrincipal. Estos metodos, al igual que los métodos para eventos de menu, deben recibir por referencia un obtejo de tipo wxCommandEvent. En este caso se utilizan los dos primeros ids libres. Cuando se generan muchos eventos de esta forma conviene utilizar enum para definir palabras clave para cada id, de forma que el código se más facil de leer y modificar (enum mis_ids={EVENTO_CTRL_ALT_ESPACIO=wxID_HIGHEST+1,EVENTO_F3,EVENTO...};).<BR>
+Nota: la ventana debe tener el foco de teclado para que estos atajos funcionen. Para eso, el foco debe estar en un control de la misma (por ejemplo en un botón o en un control de texto, se puede forzar con el método SetFocus del control desde el constructor de la ventana).</LI>
+</UL><BR>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="wx_timers"/><H2>¿Cómo uso temporizadores (timers)?</H2>
+Un temporizador es un control que se encarga de generar un evento cada cierto período de tiempo. El control (<A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_timer.html">wxTimer</A>) no tiene representación visual, por lo que inicialmente puede no estar asociado a ninguna ventana. Para poder recibir sus eventos debemos asociarlo a una ventana. Esto se puede hacer mediante el constructor, que recibe el manejador de eventos de la ventana, el cual se obtiene con el método GetEventHandler. A continuación debemos asociar un método de la ventana al evento del timer utilizando el método Connect de la ventana. Finalmente, con el método <A target="_blank" href="http://docs.wxwidgets.org/trunk/classwx_timer.html#2d0f584f28cd836deea602a8f2fc32d6">Start</A> de wxTimer, ponemos en marcha el temporizador. Start recibe dos parámetros, el tiempo (en milisegundos) y una bandera que indica si el evento debe dispararse una vez y detener el timer, o dispararse periodicamente. El método que recibe el evento debe tener como argumento un objeto de tipo wxTimerEvent por referencia.<br>
+<BR>
+El siguiente código, colocado en el constructor de una ventana (VentanaPrincipal), crea un timer, asocia su evento a un método de la misma (OnTimer), y lo inicializa para generar el evento cada 1 segundo:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wxTimer *timer = new wxTimer(GetEventHandler());<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connect(wxEVT_TIMER,wxTimerEventHandler(VentanaPrincipal::OnTimer),NULL,this);<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timer-&gt;Start(1000,false);<BR>
+<br>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+<A name="wx_build"/><H2>¿Cómo compilo wxWidgets en GNU/Linux?</H2>
+Sigue estos pasos si el gestor de paquetes de tu distribución no tiene la versión de wxWidgets que necesistas (por ejemplo, en los primeros proyectos es más simple utilizar la versión ANSI pero los repositorios suelen tener la versión UNICODE):<OL>
+<LI>Descargar los fuentes desde <A href="http://www.wxwidgets.org/downloads/">http://www.wxwidgets.org/downloads/</A>, seleccionando "Current Stable Release" y la versión wxAll o wxGTK.</LI>
+<LI>Descomprimir los fuentes descargados: por ejemplo, si el archivo es wxWidgets-2.8.11.tgz, desde una consola se puede hacer con "tar -xzvf wxWidgets-2.8.11.tgz". Si la extensión es .tar.bz2, cambiar "-xzvf" por "-xjvf". Si es zip, utilizar "unzip -x wxWidgets-2.8.11.zip".</LI>
+<LI>Abrir una consola y entrar en la carpeta descomprimida (con el comando cd).</LI>
+<LI>Ejecutar el script de configuración con el comando "./configure --enable-ansi --disable-unicode" (si se quiere la versión unicode omitir los 2 parámetros). Se configura para instalar en el directorio "/usr/local", para cambiar, por ejemplo a "/opt/wx" agregar "--prefix=/opt/wx". Si todo va bien y el sistema tiene el compilador y las dependencias instaladas, el script mostrará un resúmen de la configuración elegida. Si hay algún error, probablemente se deba a la falta de una biblioteca e indique cual. Hay que intentar instalar la versión de desarrollo de la misma (que termina en -dev o -devel) con el gestor de paquetes de la distribución.</LI>
+<LI>Compilar la biblioteca con el comando "make", o alternativamente con "make -j 4" para compilar utilizando 4 núcleos en pcs con procesadores modernos.</LI>
+<LI>Instalar la biblioteca con el comando "sudo make install"</LI>
+<LI>Para instalar alguno de los complementos de la carpeta contrib (como por ejemplo el componente para scintilla), entrar en la carpeta del mismo, dentro de "contrib/build" y repetir los comandos "make" y "sudo make install".</LI>
+</OL>
+<BR>
+<A href="#indice">Volver al indice</A><BR><HR>
+
+
+
+
+<BR></BODY>
